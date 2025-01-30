@@ -1,0 +1,85 @@
+%%% This function takes in the ABECDF matrices for the interceptor
+%%% and simulate the system with the given inflows. Moreover, the delay is
+%%% given by the conduit variable (should be a model_link).
+
+%%% Note the inflows is not the inflows to the interceptor, but the known
+%%% inflows.
+
+%%% Note the ABECDF matrices should be in discrete-time.
+
+%%% Q0 and YX are the operating points of the most downstream conduit in
+%%% the interceptor.
+
+function Y_downstream = ds_capital_linear_1o_simulation(A,B,E,C,D,F,K_constant,inflows,equiv_states,conduit,equiv_matrices,time_step,Q0,YX,N)
+%%% Record ni
+n_tot = 0; % n_tot is \sum (n_i + 2)
+for i = 1:1:length(conduit.p2k)
+    n{i} = length(equiv_matrices{i}.E);
+    n_tot = n_tot + n{i};
+end
+N_inte = length(conduit.p2k);    % This is number of inflows to the interceptor
+
+% Obtain delays
+yd = [];
+for i = 1:1:length(conduit.p2k)
+    yd = [yd, conduit.p2k{i}];
+end
+yd = [yd, conduit.p2n];
+yd_ds = c2d(yd,time_step);
+temp = ss(yd_ds);
+taud = temp.InputDelay;
+taud = taud(1:end-1); % The last element is zero, so remove it.
+
+
+%%% Get E and F
+realE = []; 
+realF = [];
+
+
+
+%% Start Simulation
+
+% Initialize variables
+
+Y_X = nan(1,N);
+x = nan(1,N);
+our_inflow = nan(n_tot+1,N);
+
+% Initialize the system at time 1
+Y_X(1) = 0;
+
+temp = cell(1,n_tot+1);
+for j = 1:1:n_tot
+    temp{j} = inflows{j}(0);
+end
+temp{n_tot+1} = inflows{n_tot+1}(0);
+temp = cell2mat(temp);
+our_inflow(:,1) = temp;
+x(:,1) = zeros(1,1);
+
+% Simulate system after time 1
+for t = 2:1:N
+
+    temp = cell(1,n_tot+1);
+    for i = 1:1:n_tot
+        temp{i} = inflows{i}(t); % We note the inflows are already delayed
+    end
+    temp{n_tot+1} = inflows{n_tot+1}(0);
+    temp = cell2mat(temp);
+    our_inflow(:,t) = temp;
+   
+
+    % Update state and output
+    Asum = 0;
+    Csum = 0;
+    for i = 1:1:N_inte
+        Asum = Asum + A{i}*(equiv_states{i}(t - taud(i)));
+        Csum = Csum + C{i}*(equiv_states{i}(t - taud(i)));
+    end
+    x(:,t) = A{N_inte+1}*x(:,t-1)+ Asum + E*our_inflow(:,t-1);
+    Y_X(t) = C{N_inte+1}*x(:,t) + Csum + F*our_inflow(:,t);
+end
+
+Y_downstream = Y_X;
+
+end

@@ -1,0 +1,20 @@
+function print_model_link_parameters(cond,name_string)
+fprintf("The parameters for " + name_string + " is\n")
+% fprintf("    Auk = " + num2str(cell2mat(cond.Auk)) + '\n')
+% fprintf("    Aun = " + num2str(cond.Aun) + '\n')
+% fprintf("    Adk = " + num2str(cell2mat(cond.Adk)) + '\n')
+% fprintf("    Adn = " + num2str(cond.Adn) + '\n')
+% fprintf("    Au = " + string(cond.Au) + '\n')
+fprintf("    Ad = " + string(cond.Ad) + '\n')
+
+% fprintf("    tauuk = " + num2str(cell2mat(cond.tauuk)) + '\n')
+% fprintf("    tauun = " + num2str(cond.tauun) + '\n')
+fprintf("    taudk = " + num2str(cell2mat(cond.taudk)) + '\n')
+fprintf("    taudn = " + num2str(cond.taudn) + '\n')
+
+% fprintf("    p1k_inf = " + num2str(cell2mat(cond.p1k_inf)) + '\n')
+% fprintf("    p1ninf = " + num2str(cond.p1n_inf) + '\n')
+fprintf("    p2kinf = " + num2str(cell2mat(cond.p2k_inf)) + '\n')
+fprintf("    p2ninf = " + num2str(cond.p2n_inf) + '\n')
+fprintf('\n')
+end

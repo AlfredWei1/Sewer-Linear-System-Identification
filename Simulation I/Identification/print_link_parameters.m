@@ -1,0 +1,12 @@
+function print_link_parameters(cond,name_string)
+fprintf("The parameters for " + name_string + " is\n")
+fprintf("    Au = " + string(cond.Au) + '\n')
+fprintf("    Ad = " + string(cond.Ad) + '\n')
+fprintf("    tauu = " + string(cond.tauu) + '\n')
+fprintf("    taud = " + string(cond.taud) + '\n')
+fprintf("    p11inf = " + string(cond.p11_inf) + '\n')
+fprintf("    p12inf = " + string(cond.p12_inf) + '\n')
+fprintf("    p21inf = " + string(cond.p21_inf) + '\n')
+fprintf("    p22inf = " + string(cond.p22_inf) + '\n')
+fprintf('\n')
+end
