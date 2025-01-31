@@ -3,6 +3,11 @@ clc;
 close all;
 
 format shortG
+
+currentFileLocation = fileparts(matlab.desktop.editor.getActiveFilename);
+cd(currentFileLocation);
+addpath(genpath("./Identification/"))
+
 %% Read Data
 load('hurricane_dw.mat');
 N = length(J1_1inflow);
