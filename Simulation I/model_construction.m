@@ -2,11 +2,20 @@ clear;
 clc;
 close all;
 
-format shortG
-
+% Remove Simulation II folder from Matlab path if it exists in the parent folder
 currentFileLocation = fileparts(matlab.desktop.editor.getActiveFilename);
+parent_path = fileparts(currentFileLocation);
+cd(parent_path);
+if exist("Simulation II",'dir')
+    rmpath(genpath("Simulation II"));
+end
+
+% Add current simulation into working directory
+addpath(genpath("Simulation I\"));
 cd(currentFileLocation);
-addpath(genpath("./Identification/"))
+
+clear;
+clc;
 
 %% Read Data
 load('hurricane_dw.mat');
@@ -19,35 +28,6 @@ hours.Format = 'hh:mm';
 set(0, 'DefaultLineLineWidth', 2.5);
 set(0,'DefaultAxesFontName','Times')
 set(0,'DefaultAxesFontSize',12)
-
-% raintable = readtable('rainfall.dat');
-% rainfall = construct_rainfall(raintable,N);
-% 
-% figure;
-% my_figure_rainfall = tiledlayout(2,2);
-% set(gcf, 'Position',  [100, 100, 1100, 500])
-% 
-% nexttile;
-% plot(hours,rainfall,'color',"#0072BD");
-% title('Rainfall','interpreter','latex');
-% xlabel('Time(hh:mm)','interpreter','latex');
-% ylabel("Rainfall (mm/hr)",'interpreter','latex');
-% grid on;
-% 
-% inflows = {J1inflow,J2inflow,J3inflow};
-% 
-% if length(inflows) == 0
-% else
-%     for i = 1:1:length(inflows)
-%         nexttile;
-%         plot(hours,inflows{i},'color',"#0072BD");
-%         title_name = "Lateral Inflow at Upstream of Conduit" + " " + num2str(i);
-%         title(title_name,'interpreter','latex');
-%         xlabel('Time(hh:mm)','interpreter','latex');
-%         ylabel("Inflow (m$^3$/s)",'interpreter','latex');
-%         grid on;
-%     end
-% end
 
 
 
@@ -105,27 +85,6 @@ h = 0.01;
 OR1_gain = (torri(YX{end}+h,OR1) - torri(YX{end},OR1))/h;
 CSO1_gain = (torri(YX{end}+h,CSO1) - torri(YX{end},CSO1))/h;
 L1 = (torri_full(YX{end}+h,0.99,OR1) - torri_full(YX{end},0.99,OR1))/h;
-
-% % Yin = 0:0.01:1;
-% % cons = [];
-% % % This portion is for OR1 only
-% % for i = 1:1:length(Yin)
-% %     OR1_flow_p = torri(Yin(i),OR1);
-% %     OR1_gain_p = (torri(Yin(i)+h,OR1) - torri(Yin(i),OR1))/h;
-% %     cons = [cons, OR1_flow_p - OR1_gain_p*Yin(i)];
-% % end
-% % 
-% % % This portion is for CSO1 sand OR1 both present
-% % for i = 1:1:length(Yin)
-% %     OR1_flow_p = torri(Yin(i),OR1);
-% %     OR1_gain_p = (torri(Yin(i)+h,OR1) - torri(Yin(i),OR1))/h;
-% %     CSO1_flow_p = torri(Yin(i),CSO1);
-% %     CSO1_gain_p = (torri(Yin(i)+h,CSO1) - torri(Yin(i),CSO1))/h;
-% %     cons = [cons, OR1_flow_p - OR1_gain_p*Yin(i) + CSO1_flow_p - CSO1_gain_p*Yin(i)];
-% % end
-% % 
-% % figure;
-% % plot(Yin,cons)
 
 [A1,B1,E1,C1,D1,F1] = equivCond_matrix(C1_model,CSO1_gain,OR1_gain,L1,1);
 C1_matrices = link_matrices(A1,B1,E1,C1,D1,F1,OR1_gain,0);
@@ -509,46 +468,6 @@ set(gca,'YAxisLocation','right')
 title('$Y^I_X(t)$ Steady State','interpreter','latex');
 xlim([start_time_2 end_time_2]);
 ylim([0,inf]);
-
-% nexttile;
-% plot(hours,Y_2d_n,'color',"#0072BD",'LineStyle','-.');
-% hold on;
-% plot(hours,Y2_linear,'color',"#FF0000",'LineStyle',':');
-% plot(hours,SU2level,'color',"#77AC30");
-% grid on;
-% ylabel('Water Depth (m)','interpreter','latex');
-% xlabel('Time(hh:mm)','interpreter','latex')
-% legend('Nonlinear Feedback','Linear Feedback','PCSWMM Simulation','interpreter','latex','Location','northeast');
-% title('Downstream Level $Y^2_X(t)$','interpreter','latex');
-% xlim([start_time end_time]);
-% ylim([0,inf]);
-% 
-% nexttile;
-% plot(hours,Y_3d_n,'color',"#0072BD",'LineStyle','-.');
-% hold on;
-% plot(hours,Y3_linear,'color',"#FF0000",'LineStyle',':');
-% plot(hours,SU3level,'color',"#77AC30");
-% % plot(1:1:N, J3_1inflow);
-% grid on;
-% ylabel('Water Depth (m)','interpreter','latex');
-% xlabel('Time(hh:mm)','interpreter','latex')
-% % legend('Nonlinear IDZ Model','Linear IDZ Model','PCSWMM Simulation','interpreter','latex','Location','northeast');
-% title('Downstream Level $Y^3_X(t)$','interpreter','latex');
-% xlim([start_time end_time]);
-% ylim([0,inf]);
-% % % 
-% nexttile;
-% plot(hours,YI_n,'color',"#0072BD",'LineStyle','-.');
-% hold on;
-% plot(hours,YI_linear,'color',"#FF0000",'LineStyle',':');
-% plot(hours,WWTPlevel,'color',"#77AC30");
-% grid on;
-% ylabel('Water Depth (m)','interpreter','latex');
-% xlabel('Time(hh:mm)','interpreter','latex')
-% % legend('Linear IDZ Model','PCSWMM Simulation','interpreter','latex','Location','northeast');
-% title('Downstream Level $Y^I_X(t)$','interpreter','latex');
-% xlim([start_time end_time]);
-% ylim([0,inf]);
  
 
 

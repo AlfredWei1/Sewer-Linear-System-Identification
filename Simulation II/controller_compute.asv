@@ -2,23 +2,16 @@ clear;
 clc;
 close all;
 
-% Remove Simulation I folder from Matlab path if it exists in the parent folder
-currentFileLocation = fileparts(matlab.desktop.editor.getActiveFilename);
-parent_path = fileparts(currentFileLocation);
-cd(parent_path);
-if exist("Simulation I",'dir')
-    rmpath(genpath("Simulation I"));
-end
+format shortG
+
+% Remove current working folder
 
 % Add current simulation into working directory
-addpath(genpath("Simulation II\"));
+currentFileLocation = fileparts(matlab.desktop.editor.getActiveFilename);
 cd(currentFileLocation);
-
-clear;
-clc;
+addpath(genpath("./Identification/"))
 
 %% Read Data
-format shortG;
 load('hurricane_dw.mat');
 N = length(J1_1inflow);
 time_step = 300;
@@ -314,20 +307,8 @@ M = [M,0];
 M = diag(M);
 
 %% Construct Rainfall
-% Specify .dat delimit rules
-DataStartLine = 4;
-NumVariables = 2;
-VariableNames  = {'Date_Time','rainfall'};
-VariableWidths = [21,11] ;                                                  
-DataType = {'string','double'}; 
-opts = fixedWidthImportOptions('NumVariables',NumVariables,...
-                               'DataLines',DataStartLine,...
-                               'VariableNames',VariableNames,...
-                               'VariableWidths',VariableWidths,...
-                               'VariableTypes',DataType);
-
-raintable = readtable('rainfall.dat',opts);
-rainfall = raintable.rainfall';
+raintable = readtable('rainfall.dat');
+rainfall = raintable.Var4';
 rainfall = rainfall(1:end-1);
 rainfall = mmhr_to_ms*rainfall;
 
