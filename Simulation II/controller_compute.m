@@ -231,7 +231,7 @@ interceptor = CI_model;
 Ydown = {Ydown_C1,Ydown_C2,Ydown_C3,Ydown_interceptor};
 orifice = {OR1,CSO1,OR2,CSO2,OR3,CSO3,ORI};
 [A0,B0,A,B,E,xdelay,udelay,exoflow] = construct_ID_ct_system(equiv_conduits,interceptor,Ydown,orifice);
-[equiv_K,equiv_L] = obtain_ID_KL(equiv_conduits,interceptor,Ydown,orifice);
+[equiv_K,equiv_L,equiv_K_CSO] = obtain_ID_KL(equiv_conduits,interceptor,Ydown,orifice);
 
 for i = 1:1:length(exoflow)
     cons = exoflow{i};
@@ -422,8 +422,8 @@ w0 = zeros(N_w,1);
 
 %% Compute LQR controller
 
-Q_small = -diag([equiv_K,0]);
-R_small = -diag([equiv_L,0.01]);
+Q_small = diag([equiv_K_CSO,0.2]);
+R_small = diag([equiv_L,0.01]);
 
 Q = [];
 R = [];

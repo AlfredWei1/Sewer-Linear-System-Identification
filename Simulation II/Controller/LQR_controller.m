@@ -29,7 +29,7 @@ for t = T-1:-1:1
     K{t} = -inv(R + B'*P{t+1}*B)*B'*P{t+1}*A;
     kappa{t} = -inv(R + B'*P{t+1}*B)*B'*P{t+1}*E*wbar{t} - 0.5*inv(R + B'*P{t+1}*B)*B'*q{t+1};
 
-    P{t} = K{t}'*R*K{t} + K{t}'*B'*P{t+1}*B*K{t} + A'*P{t+1}*B*K{t} + Q + A'*P{t+1}*A;
+    P{t} = K{t}'*R*K{t} + K{t}'*B'*P{t+1}*B*K{t} + 2*A'*P{t+1}*B*K{t} + Q + A'*P{t+1}*A;
     q{t} = (2*kappa{t}'*R*K{t} + 2*kappa{t}'*B'*P{t+1}*B*K{t} + 2*kappa{t}'*B'*P{t+1}*A + ...
         2*wbar{t}'*E'*P{t+1}*B*K{t} + q{t+1}'*B*K{t} + q{t+1}'*A + 2*wbar{t}'*E'*P{t+1}*A)';
     r{t} = kappa{t}'*R*kappa{t} + kappa{t}'*B'*P{t+1}*B*kappa{t} + 2*wbar{t}'*E'*P{t+1}*B*kappa{t}+...

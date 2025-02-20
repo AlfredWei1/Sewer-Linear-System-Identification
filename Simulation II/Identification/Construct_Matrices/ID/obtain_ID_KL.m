@@ -1,4 +1,4 @@
-function [equiv_K,equiv_L] = obtain_ID_KL(equiv_conduits,interceptor,YX,orifice)
+function [equiv_K,equiv_L,equiv_K_CSO] = obtain_ID_KL(equiv_conduits,interceptor,YX,orifice)
 %% Import Parameters
 CSO_counter = 1;
 OR_counter = 1;
@@ -36,6 +36,7 @@ equiv_K = cell2mat(OR_gain);
 equiv_K = equiv_K(1:end-1);
 equiv_L = cell2mat(L);
 equiv_L = equiv_L(1:end-1);
+equiv_K_CSO = cell2mat(CSO_gain);
 
 for i = 1:1:length(YX)-1
     n{i} = length(equiv_conduits{i}.p2k);

@@ -32,6 +32,7 @@ Use C TS=False
 Calculate LS=False
 Use TSS=False
 [Scenarios]
-"Scenarios0"="C:\Users\chuan\OneDrive\Smart Sewer\For_Github\Simulation12_Simple_Control\SWMM File\system\system.inp",False,False,system
-"Scenarios1"="C:\Users\chuan\OneDrive\Smart Sewer\For_Github\Simulation11\SWMM File\system\system.inp",False,False,system
-"Scenarios2"="C:\Users\chuan\OneDrive\Smart Sewer\For_Github\Simulation8\SWMM File\system\system.inp",False,False,system
+"Scenarios0"="C:\Users\chuan\OneDrive\Smart Sewer\For_Github\Sewer-Linear-System-Identification\Simulation I\SWMM File\system\system.inp",False,False,system
+"Scenarios1"="C:\Users\chuan\OneDrive\Smart Sewer\For_Github\Simulation12_Simple_Control\SWMM File\system\system.inp",False,False,system
+"Scenarios2"="C:\Users\chuan\OneDrive\Smart Sewer\For_Github\Simulation11\SWMM File\system\system.inp",False,False,system
+"Scenarios3"="C:\Users\chuan\OneDrive\Smart Sewer\For_Github\Simulation8\SWMM File\system\system.inp",False,False,system
