@@ -18,8 +18,12 @@ In Simulation I, controller_compute.m is called model_construction.m, and step 3
 
 ## Structure of the Folders
 - "Identification", consisting of .m files, contains our rework of [Litrico (2004)]'s steps to obtain the IDZ parameters of simple conduits.
-- "Simulation", also consisting of .m files, computes 
+- "Simulation", also consisting of .m files, contains our IDZ-based, nonlinear model.
 - "SWMM File" contains the SWMM model itself, a .dat file specifying the design storm, and .out file recording a sample simulation output.
+- "Main Steps", consistsing of .m files, partitions our main file into the steps i) modeling, ii) simulation, and iii) plotting.
 
 Under the root folder, the files serve the following purposes:
-- "pyswmm_interface.py" reads 
+- "pyswmm_interface.py" reads the .out file produced by the SWMM model and save all hydraulic variables in "hurricane_dw.mat".
+- "main.m" is our main file.
+- "save_system_data.m" helps "pyswmm_interface.py" save hydrualic variables.
+- "hurricane_dw.mat" saves all hydraulic variables produced by our SWMM model "system.inp".
