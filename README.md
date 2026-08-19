@@ -18,7 +18,7 @@ In Simulation I, controller_compute.m is called model_construction.m, and step 3
 
 ## Structure of the Folders
 The folders in this repository serve these functions:
-- "Identification", consisting of .m files, contains our rework of [Litrico (2004)]'s steps to obtain the IDZ parameters of simple conduits.
+- "Identification", consisting of .m files, contains our rework of [Litrico, Fromion (2004)]'s steps to obtain the IDZ parameters of simple conduits.
 - "Simulation", also consisting of .m files, contains our IDZ-based, nonlinear model.
 - "SWMM File" contains the SWMM model itself, a .dat file specifying the design storm, and .out file recording a sample simulation output.
 - "Main Steps", consistsing of .m files, partitions our main file into the steps i) modeling, ii) simulation, and iii) plotting.
