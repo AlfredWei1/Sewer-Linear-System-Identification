@@ -5,12 +5,12 @@ The code has three formats: PCSWMM files that has suffix .inp, python files that
 
 That is, you need to install pyswmm from their website https://www.pyswmm.org/. You will also need to have a license for PCSWMM if you want to have access to the details of the SWMM model. Next we introduce how to run the programs.
 
-Running the program consists of four steps:
+Running the program consists of three steps:
 - Run the SWMM model to generate "system.out"
 - Run pyswmm_interface.py to read "system.out" from its specified path. This saves a matlab data file hurricane_dw.mat.
 - Run "main.m" to generate the plot in the paper.
 
-(Before running the program, you should type the command matlab.engine.shareEngine in your Matlab command line.)
+(Before running the python script, you should type the command matlab.engine.shareEngine in your Matlab command line.)
 (If you do not have a license for PCSWMM, you can neglect step 1 because the a sample "system.out" is provided, but you cannot make any changes to the PCSWMM model.)
 
 ## Structure of the Folders
