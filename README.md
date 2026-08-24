@@ -15,8 +15,7 @@ Running the program consists of three steps:
 
 ## Structure of the Folders
 The folders in this repository serve these functions:
-- "Identification", consisting of .m files, contains our rework of "Analytical approximation of open-channel flow
-for controller design" (Litrico, Fromion 2004), in which there are steps to obtain the IDZ parameters of simple conduits.
+- "Identification", consisting of .m files, contains our rework of [1], in which there are steps to obtain the IDZ parameters of simple conduits.
 - "Simulation", also consisting of .m files, contains our IDZ-based, nonlinear model.
 - "SWMM File" contains the SWMM model itself and some files associated with it. Specifically, a ".out" file contains the PCSWMM simulation output.
 - "Main Steps", consistsing of .m files, partitions our main file into five steps.
@@ -30,3 +29,8 @@ Under the root folder, the files serve the following purposes:
 ## Funding Acknowledgements
 This work was supported in part by Computational Hydraulics Inc.’s Educational Grant Program for complimentary use of PCSWMM Prof 2D software. This work was supported in part by the Connaught Fund, University of Toronto, and by the Edward S. Rogers Sr. Department of Electrical and Computer Engineering, University of Toronto. We acknowledge the support of the Natural Sciences and Engineering Research Council of Canada (NSERC), [funding reference number RGPIN-2022-04140], [funding reference number DGECR-2022-00098].
 Cette recherche a été financée par le Conseil de recherches en sciences naturelles et en génie du Canada (CRSNG), [numéro de référence RGPIN-2022-04140], [numéro de référence DGECR-2022-00098].
+
+## Reference
+[1] X. Litrico and V. Fromion, “Analytical approximation of open-channel
+flow for controller design,” Applied Mathematical Modelling, vol. 28,
+no. 7, pp. 677–695, 2004
