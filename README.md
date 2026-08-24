@@ -33,4 +33,4 @@ Cette recherche a été financée par le Conseil de recherches en sciences natur
 ## Reference
 [1] X. Litrico and V. Fromion, “Analytical approximation of open-channel
 flow for controller design,” Applied Mathematical Modelling, vol. 28,
-no. 7, pp. 677–695, 2004
+no. 7, pp. 677–695, 2004.
