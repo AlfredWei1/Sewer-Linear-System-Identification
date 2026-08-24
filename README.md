@@ -15,7 +15,7 @@ Running the program consists of three steps:
 
 ## Structure of the Folders
 The folders in this repository serve these functions:
-- "Identification", consisting of .m files, contains our rework of [1], in which there are steps to obtain the IDZ parameters of simple conduits.
+- "Identification", consisting of .m files, contains our implementation of [1], in which there are steps to obtain the IDZ parameters of simple conduits.
 - "Simulation", also consisting of .m files, contains our IDZ-based, nonlinear model.
 - "SWMM File" contains the SWMM model itself and some files associated with it. Specifically, a ".out" file contains the PCSWMM simulation output.
 - "Main Steps", consistsing of .m files, partitions our main file into five steps.
