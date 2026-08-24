@@ -27,6 +27,6 @@ Under the root folder, the files serve the following purposes:
 - "save_system_data.m" helps "pyswmm_interface.py" save hydrualic variables.
 - "hurricane_dw.mat" saves all hydraulic variables produced by our SWMM model "system.inp".
 
-- ## Funding Acknowledgements
+## Funding Acknowledgements
 This work is based on the MASc thesis by C. Wei \cite{alfredThesis}. This work was supported in part by Computational Hydraulics Inc.’s Educational Grant Program for complimentary use of PCSWMM Prof 2D software. This work was supported in part by the Connaught Fund, University of Toronto, and by the Edward S. Rogers Sr. Department of Electrical and Computer Engineering, University of Toronto. We acknowledge the support of the Natural Sciences and Engineering Research Council of Canada (NSERC), [funding reference number RGPIN-2022-04140], [funding reference number DGECR-2022-00098].
 Cette recherche a été financée par le Conseil de recherches en sciences naturelles et en génie du Canada (CRSNG), [numéro de référence RGPIN-2022-04140], [numéro de référence DGECR-2022-00098].
